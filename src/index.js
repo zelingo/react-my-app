@@ -4,10 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
+/**
+ * 引入的自定义组件
+ */
+
+import ClickCounter from './components/ClickCounter';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    <ClickCounter />
   </React.StrictMode>
 );
 
