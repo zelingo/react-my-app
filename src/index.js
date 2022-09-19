@@ -9,7 +9,7 @@ import reportWebVitals from './reportWebVitals';
  * 引入的自定义组件
  */
 
-import CountPanel from './components/CountPanel';
+import CountPanel from './views/CountPanel';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
