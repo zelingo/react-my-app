@@ -9,13 +9,13 @@ import reportWebVitals from './reportWebVitals';
  * 引入的自定义组件
  */
 
-import CountPanel from './components/CountPanel';
+import CounterPanel from './views/CounterPanel';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
-    <CountPanel />
+    <CounterPanel />
   </React.StrictMode>
 );
 

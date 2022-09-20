@@ -1,29 +1,40 @@
 import React, { Component } from "react";
+import store from './../Store';
+import * as Actions from './../Action';
 
 
-class ClickCounter extends Component{
+class Counter extends Component{
   constructor(props){
     super(props);
-    // this.onClickButton = this.onClickButton.bind(this);
-    this.state = { count: props.initCount }
+
+    // 订阅事件
+    store.subscribe(this.onChange);
+    this.state = this.getOwnState();
+  }
+
+  getOwnState(){
+    const { caption } = this.props;
+    return {count: store.getState()[caption]}
+  }
+
+  onChange(){
+    this.setState(this.getOwnState());
+  }
+
+  componentWillUnmount(){
+    // 取消订阅事件
+    store.unsubscribe(this.onChange)
   }
 
   onClickIncrementButton(){
-    this.updateCount(true)
+    store.dispatch(Actions.increment(this.props.caption))
   }
 
 
   onClickDecrementButton(){
-    this.updateCount(false)
-    
+    store.dispatch(Actions.decrement(this.props.caption))
   }
 
-  updateCount(Increment){
-    const prevCount = this.state.count;
-    const newCount = Increment ? prevCount + 1 : prevCount -1;
-    this.setState({count: newCount});
-    this.props.onUpdate(newCount, prevCount)
-  }
 
   /**
    * 当父组件重新渲染render被调用时，子组件的compnentWillReceiveProps会被调用;
@@ -31,10 +42,10 @@ class ClickCounter extends Component{
    * this.setState()改变内部state状态时，不会调用
    * @param {*} nextProps 
    */
-  componentWillReceiveProps(nextProps){
-    const { caption, initCount } = nextProps;
-    console.log("enter componentWillReceiveProps:"+caption+ ":"+  initCount)
-  }
+  // componentWillReceiveProps(nextProps){
+  //   const { caption, initCount } = nextProps;
+  //   console.log("enter componentWillReceiveProps:"+caption+ ":"+  initCount)
+  // }
 
   /**如果传入的props.caption没有发生变化、当前的state也没有发生变化，那么可以停止继续往下渲染，同时可以提高性能
    * 返回true，表示继续更新;
@@ -43,9 +54,9 @@ class ClickCounter extends Component{
    * @param {count} nextState 
    * @returns 布尔值 默认true
    */
-  shouldComponentUpdate(nextProps, nextState){
-    return (nextProps.caption !== this.props.caption) || (nextState.count !== this.state.count)
-  }
+  // shouldComponentUpdate(nextProps, nextState){
+  //   return (nextProps.caption !== this.props.caption) || (nextState.count !== this.state.count)
+  // }
 
   render(){
     const { caption } = this.props;
@@ -61,4 +72,4 @@ class ClickCounter extends Component{
   }
 }
 
-export default ClickCounter; 
+export default Counter; 
