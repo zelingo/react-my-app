@@ -1,13 +1,23 @@
-import { createStore } from 'redux';
-import reducer from './Reducer';
+import {  configureStore  } from '@reduxjs/toolkit';
+import { combineReducers } from 'react-redux';
+import reducer  from './Reducer';
+
 
 
 const initValue = {
   "first": 10,
   "second": 20,
-  "third": 30
+  "third": 30 
 }
 
 
-const store = createStore(reducer, initValue);
+
+
+
+
+
+
+const store = configureStore({
+  reducer
+})
 export default store;     

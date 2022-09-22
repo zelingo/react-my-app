@@ -13,7 +13,7 @@ class CountPanel extends Component{
         <Counter caption="second"/>
         <Counter caption="third"/>
         <hr/>
-        <Summary/>
+        {/* <Summary/> */}
       </div>
     )
   }

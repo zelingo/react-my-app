@@ -7,12 +7,14 @@ class Counter extends Component{
   constructor(props){
     super(props);
 
-    // 订阅事件
-    store.subscribe(this.onChange);
+    this.getOwnState = this.getOwnState.bind(this);
+
+    
     this.state = this.getOwnState();
   }
 
   getOwnState(){
+    console.log(store.getState())
     const { caption } = this.props;
     return {count: store.getState()[caption]}
   }
@@ -21,9 +23,14 @@ class Counter extends Component{
     this.setState(this.getOwnState());
   }
 
+  componentDidMount(){
+    // 订阅事件
+    store.subscribe(this.onChange.bind(this));
+  }
+
   componentWillUnmount(){
     // 取消订阅事件
-    store.unsubscribe(this.onChange)
+    // store.unsubscribe(this.onChange.bind(this))
   }
 
   onClickIncrementButton(){
