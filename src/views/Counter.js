@@ -45,7 +45,7 @@ class Counter extends Component{
 
   /**
    * 当父组件重新渲染render被调用时，子组件的compnentWillReceiveProps会被调用;
-   * 当前组件的props发生变化时，会被调用;
+   * 目标组件的props发生变化时，会被调用;
    * this.setState()改变内部state状态时，不会调用
    * @param {*} nextProps 
    */

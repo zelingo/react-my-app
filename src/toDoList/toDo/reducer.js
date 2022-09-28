@@ -1,6 +1,6 @@
 import { TOGGLE_TODO, ADD_TODO, REMOVE_TODO } from "./ActionType";
 
-export default (state = [], action)=> {
+export default function reducer(state = [], action) {
   switch(action.type){
     case ADD_TODO:
       return [action.item, ...state];

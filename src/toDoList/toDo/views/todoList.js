@@ -4,16 +4,16 @@ import * as FilterTypes from './../../constants';
 import { removeTodo, toggleTodo } from "../Actions";
 import { connect } from "react-redux";
 
-const todoList = ({list, onRemove, onToggle})=>{
+const todoList = ({list, onRemoveItem, onToggleItem})=>{
   return (
     <ul style={{
-      "list-style":"none", 
+      "listStyle":"none", 
       "width":"40%"
      }}>
         <li style={{
       "display": "flex",
-      "align-items":"center",
-      "justify-content":"center",
+      "aligntems":"center",
+      "justifyContent":"center",
       "border":"1px solid #ddd",
       "padding": "3px "
     }}>
@@ -29,8 +29,8 @@ const todoList = ({list, onRemove, onToggle})=>{
           id={item.id}
           text={item.text}
           completed={item.completed}
-          onRemove={()=> onRemove(item.id)}
-          onToggle={()=> onToggle(item.id)}
+          onRemove={onRemoveItem}
+          onToggle={onToggleItem}
           />
         ))
       }
@@ -60,10 +60,10 @@ const mapStateToProps = (state)=>{
 
 const mapDispatchToProps = (dispatch)=> {
   return {
-    onRemove: (id)=>{
+    onRemoveItem: (id)=>{
        dispatch(removeTodo(id))
     },
-    onToggle: (id)=> {
+    onToggleItem: (id)=> {
       dispatch(toggleTodo(id))
     }
   }
